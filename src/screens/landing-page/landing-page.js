@@ -18,6 +18,7 @@ export default function LandingPage() {
             })
             setArticles(JSON.parse(JSON.stringify(response)));
             setFilteredArticles(JSON.parse(JSON.stringify(response)));
+            console.log(filteredArticles);
     }
 
     const Filter = (e) => {
@@ -70,7 +71,7 @@ export default function LandingPage() {
             <h1 className='articlesTittle'>Kite Rocket Articles</h1>
             <ul className='ulGrid'>
             {
-                filteredArticles !== [] && (
+                filteredArticles.length > 0 && (
                 filteredArticles.map((item) => {
                         return(
                             <li>
@@ -100,5 +101,5 @@ export default function LandingPage() {
             KiteRocket Landing Page.
         </footer>
     </div>
-  )
+  );
 }
