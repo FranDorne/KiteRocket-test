@@ -39,7 +39,8 @@ export default function LandingPage() {
     const options = [
         { value: 'Sustainability', label:'Sustainability'},
         { value: 'chip', label:'Chip'},
-        { value: 'China', label:'China'}
+        { value: 'China', label:'China'},
+        { value: 'Shanghai', label:'Shanghai'}
     ]
 
     const getValues = (selectedValues) => {
@@ -54,44 +55,46 @@ export default function LandingPage() {
   return (
     <div className='landingPageContainer'>
         <div className='landingPageBrand'>
-            <img className='imgBrand' src='Brand.png' alt='' />
+            <img className='imgBrand' src='KiteRocket.png' alt=''/>
         </div>
         <div className='products'>
         </div>
         <container>
             <div>
-                <Select options={options} isMulti={true} onChange={getValues}></Select>
-                <button onClick={() => clearFilter()}>
-                    Limpiar filtros
-                </button>
+                <Select className='filterSelect' options={options} isMulti={true} onChange={getValues}></Select>
                 <button className='filterButton' onClick={(e) => Filter(e)}>
                     Filtrar
                 </button>
+                <button className='clearFilterButton' onClick={() => clearFilter()}>
+                    Limpiar filtros
+                </button>
             </div>
-            <h1 className='articlesTittle'>Kite Rocket Articles</h1>
+            <h1 className='pageTittle'>Kite Rocket Articles</h1>
             <ul className='ulGrid'>
             {
                 filteredArticles.length > 0 && (
                 filteredArticles.map((item) => {
+                    console.log(filteredArticles)
                         return(
-                            <li>
-                                <img className='listedProductImg' src={item.yoast_head_json.og_image[0].url} alt='product'/>
-                                <h3 className='productName'>{item.yoast_head_json.og_title}</h3>
-                                <p className='productDescription' dangerouslySetInnerHTML={{__html: item.excerpt.rendered}} />
-                                <a href={item.link} className='readMore'>
-                                     Read more
-                                </a>
-                                 {item._embedded["wp:term"][1].length > 0 &&
-                                <p className='productPrice'>
-                                    {item._embedded["wp:term"][1].map((tag) => {
-                                        return `${tag.name}, `
-                                    })}
-                                </p>
-                                }
-                                <p>
-                                    <button>Add to cart</button>
-                                </p>
-                            </li>
+                            <div className='liDiv'>
+                                <li>
+                                    <img className='listedProductImg' src={item.yoast_head_json.og_image[0].url} alt='product'/>
+                                    <h3 className='productName'>{item.yoast_head_json.og_title}</h3>
+                                    <p className='productDescription' dangerouslySetInnerHTML={{__html: item.excerpt.rendered}} />
+                                    {item._embedded["wp:term"][1].length > 0 &&
+                                    <div className='tagDiv'>
+                                        <p className='productTag'>
+                                            <span className='tagSpan'>Tags: </span>{item._embedded["wp:term"][1].map((tag) => {
+                                                return `${tag.name}, `
+                                            })}
+                                        </p>
+                                    </div>
+                                    }
+                                    <a href={item.link} className='readMore'>
+                                        Read more
+                                    </a>
+                                </li>
+                            </div>
                                 )
                 }))
             }
