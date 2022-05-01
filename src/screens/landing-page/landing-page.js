@@ -2,12 +2,18 @@ import React, {useState, useEffect} from 'react';
 import Select from 'react-select'
 import './landing-page.css';
 import axios from 'axios';
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function LandingPage() {
 
     const [ articles, setArticles ] = useState([]);
     const [ filteredArticles, setFilteredArticles ] = useState(articles);
     const [ filterTags, setFilterTags ] = useState([]);
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const Products = async () => {
         const response = await axios
@@ -90,9 +96,22 @@ export default function LandingPage() {
                                         </p>
                                     </div>
                                     }
-                                    <a href={item.link} className='readMore'>
+                                    <button onClick={handleShow}  className='readMore'>
                                         Read more
-                                    </a>
+                                    </button>
+                                    <Modal show={show} onHide={handleClose}>
+                                        <Modal.Header closeButton>
+                                            <Modal.Title>Nombre del articulo</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>Descripcion completa del articulo</Modal.Body>
+                                        <Modal.Footer>
+                                            <Button className='InfoButton' variant="secondary">
+                                            <a href={item.link} className='InfoButtonLink'>
+                                                INFO
+                                            </a>
+                                            </Button>
+                                        </Modal.Footer>
+                                    </Modal>
                                 </li>
                             </div>
                                 )
