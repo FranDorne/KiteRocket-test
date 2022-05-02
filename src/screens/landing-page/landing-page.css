@@ -44,9 +44,13 @@
     color: #fff;
 }
 
+.modal-content {
+    background-color: #393939 !important; 
+}
 
 
 .productName{
+    margin-top: 10px;
     font-size: 18px;
     color: White;
 }
@@ -54,6 +58,10 @@
 .productDescription{
     font-size: 10px;
     color: #EBF2F6;
+}
+.productDescriptionModal{
+    font-size: 20px;
+    color: #EBF2F6 ;
 }
 
 .readMore{
@@ -77,6 +85,17 @@
     font-size: 12px;
 }
 
+.productTagModal{
+    color: #fff;
+    font-size: 18px;
+}
+
+.modalTittle{
+    color: #fff;
+    font-size: 32px !important;
+    width: 100%;
+}
+
 .landingPageFooter {
     width: 100%;
     height: 20vh;
@@ -91,12 +110,15 @@
 
 
 .listedProductImg{
-    max-width: 100%;
+    width: 240px;
+    height: 180px;
+    object-fit: cover;
 }
 
 .InfoButton {
     color: #FF0066 !important;
-    background-color: #000 !important;
+    background-color: transparent!important;
+    border: none !important;
 }
 
 .InfoButtonLink {
@@ -106,9 +128,9 @@
 .ulGrid{
     list-style: none;
     padding: 0;
-    margin: 16px;
+    margin: 10px 20px 10px 20px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-gap: 2em;
+    grid-gap: 3em;
 }
 
