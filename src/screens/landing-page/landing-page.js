@@ -81,10 +81,10 @@ export default function LandingPage() {
                 <div>
                     <Select className='filterSelect' options={options} isMulti={true} onChange={getValues}></Select>
                     <button className='filterButton' onClick={(e) => Filter(e)}>
-                        Filtrar
+                        Filter
                     </button>
                     <button className='clearFilterButton' onClick={() => clearFilter()}>
-                        Limpiar filtros
+                        Clean filters
                     </button>
                 </div>
                 <h1 className='pageTittle'>Kite Rocket Articles</h1>
