@@ -5,7 +5,6 @@ import axios from 'axios';
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
-import _ from "lodash";
 
 export default function LandingPage() {
 
@@ -164,6 +163,14 @@ export default function LandingPage() {
                 <button>1</button>
                 <button onClick={() => Products(2)}>2</button>
                 <button onClick={() => Products(3)}>3</button>
+                {/* <ul className='pagination'>
+                    {
+                        pages.map((page) => {
+                            return(
+                            <li className='page-link'>{page}</li>
+                        )})
+                    }
+                </ul> */}
             </div>
             <footer className='landingPageFooter'>
                 KiteRocket Landing Page.
