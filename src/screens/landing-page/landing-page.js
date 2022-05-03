@@ -5,6 +5,7 @@ import axios from 'axios';
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
+import _ from "lodash";
 
 export default function LandingPage() {
 
@@ -13,22 +14,24 @@ export default function LandingPage() {
     const [ filterTags, setFilterTags ] = useState([]);
     const [ loading, setLoading ] = useState(true)
     const [ selectedArticle, setSelectedArticle ] = useState({})
-    const [show, setShow] = useState(false);
+    const [ show, setShow ] = useState(false);
+    const [ pageCount, setPageCount ] = useState();
     const handleClose = () => setShow(false);
     const handleShow = (selected) => {setShow(true); setSelectedArticle(selected)};
+    
 
-
-    const Products = async () => {
+    const Products = async ( page ) => {
         const response = await axios
         .get(
-            `${process.env.REACT_APP_KITE_API}`)
+            `${process.env.REACT_APP_KITE_API}&page=${page}`)
             .then((result) => { 
+                console.log(result.headers["x-wp-totalpages"])
                 return result.data;
             })
             setArticles(JSON.parse(JSON.stringify(response)));
             setFilteredArticles(JSON.parse(JSON.stringify(response)));
             setLoading(false);
-            console.log(filteredArticles);
+            console.log(JSON.parse(JSON.stringify(response)));
     }
 
     const Filter = (e) => {
@@ -58,8 +61,9 @@ export default function LandingPage() {
         setFilterTags(values);
     }
 
+
     useEffect(() => {
-        Products();
+        Products(1);
         
     },[]) 
     
@@ -153,8 +157,14 @@ export default function LandingPage() {
                                     )
                     }))
                 }
+                
                 </ul>
             </container>
+            <div className='d-flex justify-content-center'>
+                <button>1</button>
+                <button onClick={() => Products(2)}>2</button>
+                <button onClick={() => Products(3)}>3</button>
+            </div>
             <footer className='landingPageFooter'>
                 KiteRocket Landing Page.
             </footer>
